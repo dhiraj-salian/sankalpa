@@ -23,14 +23,14 @@ Git submodules give us exactly this. This meta-repo records, for each component,
 ## Repository layout
 
 ```
-sankalpa/                    ← this umbrella meta-repo  (github.com/OWNER/sankalpa)
+sankalpa/                    ← this umbrella meta-repo  (github.com/dhiraj-salian/sankalpa)
 ├── README.md                ← you are here
 ├── COMPONENTS.md            ← the component map: repos, status, roadmap phase
 ├── .gitmodules              ← declares each component submodule + its remote URL
 ├── scripts/
 │   ├── bootstrap.sh         ← clone/init all submodules and set them up
 │   └── update-all.sh        ← pull the latest of each submodule and re-pin
-└── sankalpa-spec/           ← submodule → github.com/OWNER/sankalpa-spec   [Draft-complete]
+└── sankalpa-spec/           ← submodule → github.com/dhiraj-salian/sankalpa-spec   [Draft-complete]
     (future components are added as submodules as their ROADMAP phase begins)
 ```
 
@@ -42,7 +42,7 @@ See [`COMPONENTS.md`](COMPONENTS.md) for the full, current list of component rep
 
 ```bash
 # Clone the meta-repo AND all component repos at their pinned commits:
-git clone --recursive https://github.com/OWNER/sankalpa.git
+git clone --recursive https://github.com/dhiraj-salian/sankalpa.git
 
 # Already cloned without --recursive? Initialize the submodules:
 cd sankalpa
@@ -56,7 +56,7 @@ git submodule update --init --recursive
 Each component is a normal, standalone repository. You can ignore this meta-repo entirely and just:
 
 ```bash
-git clone https://github.com/OWNER/sankalpa-spec.git
+git clone https://github.com/dhiraj-salian/sankalpa-spec.git
 ```
 
 Changes are made, reviewed, and released in the **component** repo. The meta-repo is updated separately to *point at* a new component commit (see below).
@@ -77,15 +77,20 @@ Sankalpa is **specification-first** (see [ADR-0001](sankalpa-spec/adrs/0001-spec
 
 Project-wide governance, the RFC/ADR/AEP process, and contribution guidelines live in the specification repo ([`GOVERNANCE.md`](sankalpa-spec/GOVERNANCE.md), [`CONTRIBUTING.md`](sankalpa-spec/CONTRIBUTING.md), [`process/`](sankalpa-spec/process/README.md)) and apply across all component repos.
 
-## Setting up the GitHub remotes (one-time)
+## Publishing to GitHub
 
-This meta-repo is wired with placeholder remote URLs (`github.com/OWNER/...`). To publish:
+The remotes are already configured for owner **`dhiraj-salian`**:
+- meta-repo `origin` → `github.com/dhiraj-salian/sankalpa.git`
+- `sankalpa-spec` submodule `origin` → `github.com/dhiraj-salian/sankalpa-spec.git`
 
-1. Create the GitHub repositories (e.g. `sankalpa` and `sankalpa-spec`) under your account/org.
-2. Replace `OWNER` with your GitHub owner in [`.gitmodules`](.gitmodules) (or run `git submodule set-url sankalpa-spec <url>`), then `git submodule sync`.
-3. Push each **component** repo first (so its commits exist on GitHub), then push this **meta** repo (whose gitlinks reference those commits).
+To publish, create the two (empty) GitHub repositories, then **push the component first, then the meta-repo** (the meta-repo's pin references a component commit that must already exist on its remote):
 
-See [`COMPONENTS.md`](COMPONENTS.md) §Publishing for the exact commands.
+```bash
+git -C sankalpa-spec push -u origin main    # component first
+git push -u origin main                       # then the meta-repo
+```
+
+The complete walkthrough — one-time setup, the everyday change-and-push workflow, cloning, adding components, and troubleshooting — is in [`docs/GITHUB-SETUP.md`](docs/GITHUB-SETUP.md).
 
 ## License
 

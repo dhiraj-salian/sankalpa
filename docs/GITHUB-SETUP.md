@@ -14,7 +14,7 @@ How to publish the Sankalpa meta-repo and its component submodules to GitHub, an
 Set your GitHub owner once per shell (used throughout):
 
 ```bash
-OWNER=your-github-username        # <-- change to your GitHub username or org
+OWNER=dhiraj-salian               # this project's GitHub owner (change if forking)
 ```
 
 Pick a URL style (used below as `<spec-url>` / `<meta-url>`):
@@ -29,6 +29,13 @@ The rest of this guide uses HTTPS; substitute the SSH URLs if you prefer.
 ---
 
 ## 1. First-time publish
+
+> **This clone's remotes are already configured** for `dhiraj-salian` (meta `origin` → `github.com/dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → the component repo). So the quickest publish is: create the two **empty** GitHub repos, then push **component first, then meta**:
+> ```bash
+> git -C sankalpa-spec push -u origin main    # component first
+> git push -u origin main                       # then the meta-repo
+> ```
+> Paths A and B below are the full from-scratch reference (e.g. for a fresh fork where remotes aren't set yet).
 
 ### Path A — with the GitHub CLI (recommended)
 

@@ -6,7 +6,7 @@ This meta-repo composes the Sankalpa project's component repositories as git sub
 
 | Component (submodule path) | Repository | Status | Roadmap phase |
 |----------------------------|------------|--------|---------------|
-| [`sankalpa-spec/`](sankalpa-spec/README.md) | `github.com/OWNER/sankalpa-spec` | **Draft-complete** (all 16 Books authored) | Phase 1–2 |
+| [`sankalpa-spec/`](sankalpa-spec/README.md) | `github.com/dhiraj-salian/sankalpa-spec` | **Draft-complete** (all 16 Books authored) | Phase 1–2 |
 
 ## Planned components
 
@@ -34,34 +34,21 @@ When a phase begins and a component repo is created:
 
 ```bash
 # From the meta-repo root, once the component repo exists on GitHub:
-git submodule add https://github.com/OWNER/sankalpa-core.git sankalpa-core
+git submodule add https://github.com/dhiraj-salian/sankalpa-core.git sankalpa-core
 git commit -m "Add sankalpa-core component (Phase 3)"
 # Then add a row to the 'Current components' table above.
 ```
 
 ## Publishing (one-time GitHub setup)
 
-The meta-repo and `sankalpa-spec` are wired with placeholder `OWNER` URLs. To publish under your GitHub owner:
+The remotes are already configured for owner **`dhiraj-salian`** (meta `origin` → `github.com/dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → `github.com/dhiraj-salian/sankalpa-spec.git`). Create the two empty GitHub repos, then push the **component first, then the meta-repo**:
 
 ```bash
-# 1. Create the GitHub repos: `sankalpa` (meta) and `sankalpa-spec` (component).
-
-# 2. Point the spec submodule at its real remote and push the COMPONENT first:
-cd sankalpa-spec
-git remote add origin https://github.com/OWNER/sankalpa-spec.git
-git push -u origin main
-cd ..
-
-# 3. Point the meta-repo's submodule URL at the same remote and sync:
-git submodule set-url sankalpa-spec https://github.com/OWNER/sankalpa-spec.git
-git submodule sync
-
-# 4. Push the META repo (its gitlink references the spec commit now on GitHub):
-git remote add origin https://github.com/OWNER/sankalpa.git
-git push -u origin main
+git -C sankalpa-spec push -u origin main    # component first (its commits must exist remotely)
+git push -u origin main                       # then the meta-repo (its pin references them)
 ```
 
-Replace `OWNER` with your GitHub username or organization throughout. After this, `git clone --recursive https://github.com/OWNER/sankalpa.git` reproduces the whole project.
+The full walkthrough — setup, everyday change-and-push, cloning, adding components, and troubleshooting — is in [`docs/GITHUB-SETUP.md`](docs/GITHUB-SETUP.md).
 
 ## Why the component repo, not the meta-repo, is where work happens
 
