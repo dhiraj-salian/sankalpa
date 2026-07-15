@@ -1,0 +1,4 @@
+[submodule "sankalpa-spec"]
+	path = sankalpa-spec
+	url = https://github.com/OWNER/sankalpa-spec.git
+	branch = main

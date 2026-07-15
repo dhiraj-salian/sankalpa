@@ -1,0 +1,21 @@
+# Sankalpa meta-repo .gitignore
+# This repo contains only the umbrella README, component map, scripts, and
+# submodule pins. Component source lives in the submodules, each with its own
+# .gitignore. Keep this repo clean.
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+*.log
+
+# Dependency / build output (should any tooling run at the meta level)
+node_modules/
+dist/
+build/
+.venv/
+
+# Local environment
+.env
+.env.local
