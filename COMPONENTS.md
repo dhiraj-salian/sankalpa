@@ -41,7 +41,7 @@ git commit -m "Add sankalpa-core component (Phase 3)"
 
 ## Publishing (one-time GitHub setup)
 
-The remotes are already configured for owner **`dhiraj-salian`** (meta `origin` → `github.com/dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → `github.com/dhiraj-salian/sankalpa-spec.git`). Create the two empty GitHub repos, then push the **component first, then the meta-repo**:
+The remotes are already configured over SSH for owner **`dhiraj-salian`** (meta `origin` → `git@github.com:dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → `git@github.com:dhiraj-salian/sankalpa-spec.git`). Create the two empty GitHub repos, then push the **component first, then the meta-repo**:
 
 ```bash
 git -C sankalpa-spec push -u origin main    # component first (its commits must exist remotely)

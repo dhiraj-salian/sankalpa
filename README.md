@@ -79,9 +79,9 @@ Project-wide governance, the RFC/ADR/AEP process, and contribution guidelines li
 
 ## Publishing to GitHub
 
-The remotes are already configured for owner **`dhiraj-salian`**:
-- meta-repo `origin` → `github.com/dhiraj-salian/sankalpa.git`
-- `sankalpa-spec` submodule `origin` → `github.com/dhiraj-salian/sankalpa-spec.git`
+The remotes are already configured (over SSH) for owner **`dhiraj-salian`**:
+- meta-repo `origin` → `git@github.com:dhiraj-salian/sankalpa.git`
+- `sankalpa-spec` submodule `origin` → `git@github.com:dhiraj-salian/sankalpa-spec.git`
 
 To publish, create the two (empty) GitHub repositories, then **push the component first, then the meta-repo** (the meta-repo's pin references a component commit that must already exist on its remote):
 

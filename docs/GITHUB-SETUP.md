@@ -30,7 +30,7 @@ The rest of this guide uses HTTPS; substitute the SSH URLs if you prefer.
 
 ## 1. First-time publish
 
-> **This clone's remotes are already configured** for `dhiraj-salian` (meta `origin` → `github.com/dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → the component repo). So the quickest publish is: create the two **empty** GitHub repos, then push **component first, then meta**:
+> **This clone's remotes are already configured over SSH** for `dhiraj-salian` (meta `origin` → `git@github.com:dhiraj-salian/sankalpa.git`; `sankalpa-spec` `origin` → `git@github.com:dhiraj-salian/sankalpa-spec.git`). So the quickest publish is: create the two **empty** GitHub repos, then push **component first, then meta**:
 > ```bash
 > git -C sankalpa-spec push -u origin main    # component first
 > git push -u origin main                       # then the meta-repo
